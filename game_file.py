@@ -32,8 +32,8 @@ def deal():
 def draw_card(): #some type of variable to put card into dealer or player#
 	FaceCard = False
 	drawn_card = []
-	drawn_number = random.uniform(1,10)
-	drawn_type  = random.uniform(0,3)
+	drawn_number = round(random.uniform(1,10))
+	drawn_type  = round(random.uniform(0,3))
 	if drawn_number == 1:
 		AceCard = True
 		drawn_card.append('Ace')
