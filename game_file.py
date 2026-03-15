@@ -18,6 +18,8 @@ def withdrawl():
     Deleted_cards = []
     while len(Player_Hand) != 0:
 	    Player_Hand.pop()
+
+# game logic need to touch this up before implementing #
 def deal():
 	if len(Player_Hand) <= 0:
 		draw_card()
@@ -29,6 +31,8 @@ def deal():
 		else:
 			skip
 		
+#														#
+
 def draw_card(): #some type of variable to put card into dealer or player#
 	FaceCard = False
 	drawn_card = []
@@ -58,6 +62,9 @@ def draw_card(): #some type of variable to put card into dealer or player#
 
 
 
-
+# testing player draw #
 for cards_wanted in range(player_input):
     draw_card()
+# 					  #
+
+#testing dealer logic#
