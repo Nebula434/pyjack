@@ -1,6 +1,16 @@
 import random
+import pygame
+
+#pygame variables
+pygame.init()
+pscreen = pygame.display.set_mode((1280,720))
+clock = pygame.time.Clock()
+running = True
+#
 
 
+
+#Variables for game
 Card_types = ['Spade', 'Diamond', 'Hearts', 'Clubs']
 Card_numbers = [1,2,3,4,5,6,7,8,9,10]
 FaceCard = False
@@ -9,16 +19,17 @@ Player_Hand = []
 Dealer_Hand = []
 Card = []
 Prob = random.uniform(0,1)
+temp_button = pygame.image.load('game_images/button.png')
+#
 
-player_input = int(input("Evening how many cards do u wanna draw?"))
+#Functions to be called throughout the game multiple times#
 
-
-
+#TODO: MAKE PLAYER ABLE TO WITHDRAWL#
 def withdrawl():
     while len(Player_Hand) != 0:
 	    Player_Hand.pop()
 
-# game logic need to touch this up before implementing #
+#TODO: MAKE DEALING WORK#
 def deal():
 
 
@@ -35,8 +46,8 @@ def deal():
 		else:
 			return
 
-
-def draw_card(drawn_card): #some type of variable to put card into dealer or player#
+#TODO: Draw cards on screen when draw button is clicked#
+def draw_card(): #some type of variable to put card into dealer or player#
 	FaceCard = False
 	drawn_card = []
 	drawn_number = round(random.uniform(1,10))
@@ -60,11 +71,10 @@ def draw_card(drawn_card): #some type of variable to put card into dealer or pla
 	else: 
 		drawn_card.append(drawn_number)
 		drawn_card.append(drawn_type)
-		Player_Hand.append(drawn_card)
-		return drawn_card 
 	print(drawn_card)
+	return(drawn_card)
 
-def dealer_draw_card(): #seperate function for creating dealer cards#
+def dealer_draw_card(): #TODO: CREATE DEALER#
 	FaceCard = False
 	drawn_card = []
 	drawn_number = round(random.uniform(1,10))
@@ -93,14 +103,28 @@ def dealer_draw_card(): #seperate function for creating dealer cards#
 	print(drawn_card)	
 	return
 
+#TODO: CREATE DRAW SYSTEM, UTILIZE Player_Hand.append(draw_card())#
 
-# testing player draw #
-for cards_wanted in range(player_input):
-    draw_card()
 
-	
-# 					  #
 
-#testing dealer logic#
-while len(Dealer_Hand) != 0 and len(Dealer_Hand) == 5:
-	dealer_draw_card()
+
+
+#GAME LOOP#
+while running: 
+
+	pscreen.fill("purple")
+	print(pygame.mouse.get_pos())
+
+
+
+
+
+
+	#closes game#
+	for event in pygame.event.get():
+		if event.type == pygame.QUIT:
+			running = False
+	#			#
+
+	pygame.display.flip() # think of this as updating the screen with ur work
+	clock.tick(60) # frame limit
