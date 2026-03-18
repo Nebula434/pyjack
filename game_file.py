@@ -1,16 +1,17 @@
 import random
-import pygame
+#import pygame 
 
 #pygame variables
-pygame.init()
-pscreen = pygame.display.set_mode((1280,720))
-clock = pygame.time.Clock()
-running = True
+#pygame.init()
+#pscreen = pygame.display.set_mode((1280,720))
+#clock = pygame.time.Clock()
+#running = True
 #
 
 
 
 #Variables for game
+Face_cards = ['King','Queen','Jack']
 Card_types = ['Spade', 'Diamond', 'Hearts', 'Clubs']
 Card_numbers = [1,2,3,4,5,6,7,8,9,10]
 FaceCard = False
@@ -18,11 +19,25 @@ AceCard = False
 Player_Hand = []
 Dealer_Hand = []
 Card = []
+HandValue = 0
+DealerHandValue = 0
 Prob = random.uniform(0,1)
-temp_button = pygame.image.load('game_images/button.png')
+
+
+#image loading
+
+
+#temp_button = pygame.image.load('game_images/button.png')
 #
 
 #Functions to be called throughout the game multiple times#
+#Probablity Handler
+
+def Probablity():
+	Probablity = random.uniform(0,1)
+	current_prob = Probablity
+	return current_prob
+
 
 #TODO: MAKE PLAYER ABLE TO WITHDRAWL#
 def withdrawl():
@@ -48,7 +63,7 @@ def deal():
 
 #TODO: Draw cards on screen when draw button is clicked#
 def draw_card(): #some type of variable to put card into dealer or player#
-	FaceCard = False
+	FaceCard = True
 	drawn_card = []
 	drawn_number = round(random.uniform(1,10))
 	drawn_type  = round(random.uniform(0,3))
@@ -64,13 +79,37 @@ def draw_card(): #some type of variable to put card into dealer or player#
 	if drawn_number == 1:
 		AceCard = True
 		drawn_card.append('Ace')
+		
 
-	if Prob <= 0.23:
+
+	#Probablity()
+	#current_prob = current_prob
+	while Prob <= 0.23:
 		FaceCard = True
+	if FaceCard == True:
+		drawn_number = ""
 		drawn_card.append(drawn_type)
+		drawn_face  = round(random.uniform(0,3))
+		if drawn_face == 1: 
+			drawn_face = Face_cards[0]
+		if drawn_face == 2:
+			drawn_face = Face_cards[1]
+		if drawn_face == 3:
+			drawn_face = Face_cards[2]
+		
+
+
+
+	#Card number and type has been decided by this point!
+	if FaceCard == False:
+		drawn_number = str(drawn_number)
+		drawn_card = drawn_number + " of " + drawn_type
+		#drawn_card.append(drawn_number)
+		#drawn_card.append(drawn_type)
+		Player_Hand.append(drawn_card)
 	else: 
-		drawn_card.append(drawn_number)
-		drawn_card.append(drawn_type)
+		drawn_card = drawn_face + " of " + drawn_type
+		Player_Hand.append(drawn_card)
 	print(drawn_card)
 	return(drawn_card)
 
@@ -105,26 +144,25 @@ def dealer_draw_card(): #TODO: CREATE DEALER#
 
 #TODO: CREATE DRAW SYSTEM, UTILIZE Player_Hand.append(draw_card())#
 
-
+#Drawing Tests
+player_input = input("Draw a number of cards:")
+cards_wanted = int(player_input)
+for number in range(cards_wanted):
+	print("Here is your card")
+	draw_card()
+	print("I am drawing your next card")
+	print(Player_Hand)
 
 
 
 #GAME LOOP#
-while running: 
-
-	pscreen.fill("purple")
-	print(pygame.mouse.get_pos())
-
-
-
-
-
-
-	#closes game#
-	for event in pygame.event.get():
-		if event.type == pygame.QUIT:
-			running = False
+#while running: 
+#	pscreen.fill("purple")
+#	print(pygame.mouse.get_pos())
+#	#closes game#
+#	for event in pygame.event.get():
+#		if event.type == pygame.QUIT:
+#			running = False
 	#			#
-
-	pygame.display.flip() # think of this as updating the screen with ur work
-	clock.tick(60) # frame limit
+#	pygame.display.flip() # think of this as updating the screen with ur work
+#	clock.tick(60) # frame limit
