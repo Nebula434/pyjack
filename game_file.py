@@ -63,9 +63,8 @@ def deal():
 
 #TODO: Draw cards on screen when draw button is clicked#
 def draw_card(): #some type of variable to put card into dealer or player#
-	FaceCard = True
+	FaceCard = False
 	drawn_card = []
-	drawn_number = round(random.uniform(1,10))
 	drawn_type  = round(random.uniform(0,3))
 	if drawn_type == 0:
 		drawn_type = "Spade"
@@ -76,42 +75,35 @@ def draw_card(): #some type of variable to put card into dealer or player#
 	if drawn_type == 3:
 		drawn_type = "Clubs"
 
-	if drawn_number == 1:
-		AceCard = True
-		drawn_card.append('Ace')
 		
-
-
-	#Probablity()
-	#current_prob = current_prob
-	while Prob <= 0.23:
-		FaceCard = True
-	if FaceCard == True:
+	Prob = random.uniform(0,1)
+	if Prob <= 0.23:
 		drawn_number = ""
 		drawn_card.append(drawn_type)
-		drawn_face  = round(random.uniform(0,3))
+		drawn_face  = round(random.uniform(1,3))
 		if drawn_face == 1: 
 			drawn_face = Face_cards[0]
 		if drawn_face == 2:
 			drawn_face = Face_cards[1]
 		if drawn_face == 3:
 			drawn_face = Face_cards[2]
-		
+				 
+		drawn_face = str(drawn_face)
+		drawn_card = drawn_face + " of " + drawn_type
+		Player_Hand.append(drawn_card)		
 
-
-
+	
+	drawn_number = Card_numbers[round(random.uniform(1,9))]
 	#Card number and type has been decided by this point!
 	if FaceCard == False:
+		drawn_face = ""
 		drawn_number = str(drawn_number)
 		drawn_card = drawn_number + " of " + drawn_type
 		#drawn_card.append(drawn_number)
 		#drawn_card.append(drawn_type)
 		Player_Hand.append(drawn_card)
-	else: 
-		drawn_card = drawn_face + " of " + drawn_type
-		Player_Hand.append(drawn_card)
 	print(drawn_card)
-	return(drawn_card)
+	return(drawn_card,drawn_number,drawn_face)
 
 def dealer_draw_card(): #TODO: CREATE DEALER#
 	FaceCard = False
@@ -150,8 +142,13 @@ cards_wanted = int(player_input)
 for number in range(cards_wanted):
 	print("Here is your card")
 	draw_card()
-	print("I am drawing your next card")
 	print(Player_Hand)
+	print("I am drawing your next card")
+#
+
+#Assigning Colors to the card
+
+
 
 
 
