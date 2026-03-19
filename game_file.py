@@ -31,13 +31,6 @@ Prob = random.uniform(0,1)
 #
 
 #Functions to be called throughout the game multiple times#
-#Probablity Handler
-
-def Probablity():
-	Probablity = random.uniform(0,1)
-	current_prob = Probablity
-	return current_prob
-
 
 #TODO: MAKE PLAYER ABLE TO WITHDRAWL#
 def withdrawl():
@@ -74,7 +67,6 @@ def draw_card(): #some type of variable to put card into dealer or player#
 		drawn_type = "Hearts"
 	if drawn_type == 3:
 		drawn_type = "Clubs"
-
 		
 	Prob = random.uniform(0,1)
 	if Prob <= 0.23:
@@ -92,10 +84,8 @@ def draw_card(): #some type of variable to put card into dealer or player#
 		drawn_card = drawn_face + " of " + drawn_type
 		Player_Hand.append(drawn_card)		
 
-	
-	drawn_number = Card_numbers[round(random.uniform(1,9))]
-	#Card number and type has been decided by this point!
-	if FaceCard == False:
+	if Prob > 0.23:
+		drawn_number = Card_numbers[round(random.uniform(1,9))]
 		drawn_face = ""
 		drawn_number = str(drawn_number)
 		drawn_card = drawn_number + " of " + drawn_type
