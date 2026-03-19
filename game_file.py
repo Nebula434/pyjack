@@ -12,7 +12,7 @@ import random
 
 #Variables for game
 Face_cards = ['King','Queen','Jack']
-Card_types = ['Spade', 'Diamond', 'Hearts', 'Clubs']
+Card_types = ['Spades', 'Diamonds', 'Hearts', 'Clubs']
 Card_numbers = [1,2,3,4,5,6,7,8,9,10]
 FaceCard = False
 AceCard = False
@@ -22,7 +22,7 @@ Card = []
 HandValue = 0
 DealerHandValue = 0
 Prob = random.uniform(0,1)
-
+Player_Lost = False
 
 #image loading
 
@@ -62,7 +62,7 @@ def draw_card(): #some type of variable to put card into dealer or player#
 	if drawn_type == 0:
 		drawn_type = "Spade"
 	if drawn_type == 1:
-		drawn_type = "Diamond"
+		drawn_type = "Diamonds"
 	if drawn_type == 2:
 		drawn_type = "Hearts"
 	if drawn_type == 3:
@@ -125,8 +125,139 @@ def dealer_draw_card(): #TODO: CREATE DEALER#
 	return
 
 #TODO: CREATE DRAW SYSTEM, UTILIZE Player_Hand.append(draw_card())#
-
+player_hit = False
 #Drawing Tests
+def ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason, never the actual value of the card.
+	for card in range(len(Player_Hand)):
+		current_card = Player_Hand[card]
+		#if statement hell.
+		if current_card == "Ace of Hearts":
+			cardscore = 11
+		if current_card == "1 of Hearts":
+			cardscore = 1
+		if current_card == "2 of Hearts":
+			cardscore = 2	
+		if current_card == "3 of Hearts":
+			cardscore = 3
+		if current_card == "4 of Hearts":
+			cardscore = 4
+		if current_card == "5 of Hearts":
+			cardscore = 5
+		if current_card == "6 of Hearts":
+			cardscore = 6
+		if current_card == "7 of Hearts":
+			cardscore = 7
+		if current_card == "8 of Hearts":
+			cardscore = 8
+		if current_card == "9 of Hearts":
+			cardscore = 9
+		if current_card == "10 of Hearts":
+			cardscore = 10
+		if current_card == "King of Hearts" or "Queen of Hearts" or "Jack of Hearts":
+			cardscore = 10
+		#All Hearts above this#
+		if current_card == "Ace of Diamonds":
+			cardscore = 11
+		if current_card == "1 of Diamonds":
+			cardscore = 1
+		if current_card == "2 of Diamonds":
+			cardscore = 2	
+		if current_card == "3 of Diamonds":
+			cardscore = 3
+		if current_card == "4 of Diamonds":
+			cardscore = 4
+		if current_card == "5 of Diamonds":
+			cardscore = 5
+		if current_card == "6 of Diamonds":
+			cardscore = 6
+		if current_card == "7 of Diamonds":
+			cardscore = 7
+		if current_card == "8 of Diamonds":
+			cardscore = 8
+		if current_card == "9 of Diamonds":
+			cardscore = 9
+		if current_card == "10 of Diamonds":
+			cardscore = 10
+		if current_card == "King of Diamonds" or "Queen of Diamonds" or "Jack of Diamonds":
+			cardscore = 10
+		#Diamonds above this#
+		if current_card == "Ace of Spades":
+			cardscore = 11
+		if current_card == "1 of Spades":
+			cardscore = 1
+		if current_card == "2 of Spades":
+			cardscore = 2	
+		if current_card == "3 of Spades":
+			cardscore = 3
+		if current_card == "4 of Spades":
+			cardscore = 4
+		if current_card == "5 of Spades":
+			cardscore = 5
+		if current_card == "6 of Spades":
+			cardscore = 6
+		if current_card == "7 of Spades":
+			cardscore = 7
+		if current_card == "8 of Spades":
+			cardscore = 8
+		if current_card == "9 of Spades":
+			cardscore = 9
+		if current_card == "10 of Spades":
+			cardscore = 10
+		if current_card == "King of Spades" or "Queen of Spades" or "Jack of Spades":
+			cardscore = 10
+		#Spades above this#
+		if current_card == "Ace of Clubs":
+			cardscore = 11
+		if current_card == "1 of Clubs":
+			cardscore = 1
+		if current_card == "2 of Clubs":
+			cardscore = 2	
+		if current_card == "3 of Clubs":
+			cardscore = 3
+		if current_card == "4 of Clubs":
+			cardscore = 4
+		if current_card == "5 of Clubs":
+			cardscore = 5
+		if current_card == "6 of Clubs":
+			cardscore = 6
+		if current_card == "7 of Clubs":
+			cardscore = 7
+		if current_card == "8 of Clubs":
+			cardscore = 8
+		if current_card == "9 of Clubs":
+			cardscore = 9
+		if current_card == "10 of Clubs":
+			cardscore = 10
+		if current_card == "King of Clubs" or "Queen of Clubs" or "Jack of Clubs":
+			cardscore = 10
+		#Clubs and thats it of if statement hell!#
+	total_card_scores = []
+	total_card_scores.append(cardscore)
+	print(total_card_scores)
+
+
+	#return(TotalHandScore)
+
+#Player Hit System
+player_hit = False
+DealerTurn = False
+
+#Choice Handler
+def PlayerChoice(action): 
+	if action == "Yes" or "Stand" or "Y":
+		player_hit = False
+		DealerTurn = True
+		ScoreCard()
+	if action == "No" or "Hit" or "N":
+		player_hit = True
+		draw_card()
+		print("Your Current Hand:\n", Player_Hand)
+		ScoreCard()
+
+
+
+
+#Input Tests not offical game#
 player_input = input("Draw a number of cards:")
 cards_wanted = int(player_input)
 for number in range(cards_wanted):
@@ -134,7 +265,16 @@ for number in range(cards_wanted):
 	draw_card()
 	print(Player_Hand)
 	print("I am drawing your next card")
+
+
+while len(Player_Hand) > 0 or DealerTurn == False or Player_Lost == False:
+	action_input = str(input("Would you like to stand or hit?"))
+	PlayerChoice(action_input)
+
+
+
 #
+
 
 #Assigning Colors to the card
 
