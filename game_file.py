@@ -128,72 +128,98 @@ def dealer_draw_card(): #TODO: CREATE DEALER#
 	print(drawn_card)	
 	return
 
-Player_Hand_Score = []
-Hand_scored = False
-def ScoreCard(times_needed): #Current bug only prints the value of 10 or 20 for some reason, never the actual value of the card.
-	for card in range(times_needed):
-		current_card = str(Player_Hand[card])
-		print(current_card)
-		#if statement hell.
-		if current_card[0:2] == 'Ace of Hearts' or 'Ace of Diamonds' or 'Ace of Clubs' or 'Ace of Spades':
-			cardscore = int(11)
-		if current_card[0] == '2':
+current_card = 0
+player_score = 0
+def ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason, never the actual value of the card.
+	Player_Hand_Score = []
+	total_hand_score = 0
+
+	for card in range(len(Player_Hand)):
+		#grab the card we are scoring
+		current_card = Player_Hand[card]
+		
+
+		
+		print("next card is being scored here")
+		print("Current Card Being Scored\n", current_card)
+
+
+		#check if string is in current card, then assign value if so.
+		if '2' in current_card:
+			print("this has been ran and the score should be 2")
 			cardscore = int(2)
-		if current_card[0] == '3':
+		if '3' in current_card:
+			print("this has been ran and the score should be 3")
 			cardscore = int(3)
 			
-		if current_card[0] == '4':
+		if '4' in current_card:
+			print("this has been ran and the score should be 4")
 			cardscore = int(4)
 			
-		if current_card[0] == '5':
+		if '5' in current_card:
+			print("this has been ran and the score should be 5")
 			cardscore = int(5)
 			
-		if current_card[0] == '6':
+		if '6' in current_card:
+			print("this has been ran and the score should be 6")
 			cardscore = int(6)
 			
-		if current_card[0] == '7':
+		if '7' in current_card:
+			print("this has been ran and the score should be 7")
 			cardscore = int(7)
 			
-		if current_card[0] == '8':
+		if '8' in current_card:
+			print("this has been ran and the score should be 8")
 			cardscore = int(8)
 			
-		if current_card[0] == '9':
+		if '9' in current_card:
+			print("this has been ran and the score should be 9")
 			cardscore = int(9)
-		if current_card[0] == '10':
+
+		if '10' in current_card:
+			print("this has been ran and the score should be 10")
 			cardscore = int(10)
 			print(current_card, "debug2")
+		if 'K' in current_card:
+			cardscore = int(10)
+		if 'Q' in current_card:
+			cardscore = int(10)
+		if 'J' in current_card:
+			cardscore = int(10)
+	
+		#check if card score is actually a value other than 10 or 20, see github for why
+		print(cardscore, ": Supposed to be cardscore after running through all if statements.")
 
-		if current_card[0] == "K" or "Q" or "J":
-			cardscore = float(10.0)
-			return cardscore
-		
-		print(cardscore)
-		cardscore =+ cardscore
 
-	return cardscore
-
+		#move cardscore to an existing list, thanks to u/Naive_Programmer_232 on reddit for this trick
+		Player_Hand_Score.append(cardscore)
+		print(Player_Hand_Score, ":Total Player Hand Score")
+		#add our total score together by utilzing which loop of the variable we are on. 
+		total_hand_score += Player_Hand_Score[card]
+		#print our total score
+		print("Current Hand Score:", total_hand_score)
+		player_score = total_hand_score
+		print(player_score)
+		#return our score back.
 
 #Input Test for card#
 print("Start")
 draw_card()
 draw_card()
-print(Player_Hand)
-ScoreCard(int(len(Player_Hand)))
-player_input = str(input("Stand or Hit"))
-if player_input == "Hit" :
-	draw_card()
-	ScoreCard(int(len(Player_Hand)))
-	Hand_scored = True
-	print(Player_Hand_Score)
-if player_input == "Stand":
-	#dealer would draw here
-	ScoreCard(int(len(Player_Hand)))
-	print(Player_Hand_Score)
-
-
-
-
-
+print("Current Player Hand\n", Player_Hand)
+print(len(Player_Hand), "Length of Player Hand")
+ScoreCard()
+while player_score < 21:
+	player_input = str(input("Stand or Hit"))
+	if player_input == "Hit" or "hit":
+		draw_card()
+		total_hand_score = ScoreCard()
+		print(total_hand_score)
+		Hand_scored = True
+	if player_input == "Stand" or "stand":
+		#dealer would draw here
+		total_hand_score = ScoreCard()
+		print(total_hand_score)
 
 
 
@@ -266,4 +292,4 @@ class Menu():
 #			running = False
 	#			#
 #	pygame.display.flip() # think of this as updating the screen with ur work
-#	clock.tick(60) # frame limit
+#	clock.tick(60) # frame limitre
