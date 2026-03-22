@@ -96,41 +96,58 @@ def draw_card(): #some type of variable to put card into dealer or player#
 		drawn_number = str(drawn_number)
 		drawn_card = drawn_number + " of " + drawn_type
 		Player_Hand.append(drawn_card)
-	#print(drawn_card)
-	return(drawn_card,drawn_number,drawn_face)
+	print("Player has drawn a: \n", drawn_card)
 
+	return(drawn_card)
+
+
+
+
+#DEALER MECHANICS#
 def dealer_draw_card(): #TODO: CREATE DEALER#
 	FaceCard = False
-	drawn_card = []
-	drawn_number = round(random.uniform(1,10))
-	drawn_type  = round(random.uniform(0,3))
-	if drawn_number == 1:
-		AceCard = True
-		drawn_card.append('Ace')
-	if drawn_type == 0:
-		drawn_type = "Spade"
-	if drawn_type == 1:
-		drawn_type = "Diamond"
-	if drawn_type == 2:
-		drawn_type = "Hearts"
-	if drawn_type == 3:
-		drawn_type = "Clubs"
+	dealer_drawn_card = []
+	dealer_drawn_type  = round(random.uniform(0,3))
+	if dealer_drawn_type == 0:
+		dealer_drawn_type = "Spade"
+	if dealer_drawn_type == 1:
+		dealer_drawn_type = "Diamonds"
+	if dealer_drawn_type == 2:
+		dealer_drawn_type = "Hearts"
+	if dealer_drawn_type == 3:
+		dealer_drawn_type = "Clubs"
+		
+	Prob = random.uniform(0,1)
+	if Prob <= 0.23:
+		dealer_drawn_number = ""
+		dealer_drawn_card.append(dealer_drawn_type)
+		dealer_drawn_face  = round(random.uniform(1,3))
+		if dealer_drawn_face == 1: 
+			dealer_drawn_face = Face_cards[0]
+		if dealer_drawn_face == 2:
+			dealer_drawn_face = Face_cards[1]
+		if dealer_drawn_face == 3:
+			dealer_drawn_face = Face_cards[2]
+		dealer_drawn_face = str(dealer_drawn_face)
+		dealer_drawn_card = dealer_drawn_face + " of " + dealer_drawn_type
+		Dealer_Hand.append(dealer_drawn_card)		
 
-	if Prob == 0.23:
-		FaceCard = True
-		drawn_card.append(drawn_type)
-	else: 
-		drawn_card.append("Dealer Card")
-		drawn_card.append(drawn_number)
-		drawn_card.append(drawn_type)
-		return print(drawn_card)
-		Dealer_Hand = [drawn_card]
-	print(drawn_card)	
-	return
+	if Prob > 0.23:
+		dealer_drawn_number = Card_numbers[round(random.uniform(1,9))]
+		if dealer_drawn_number == 1:
+			dealer_drawn_number = "Ace"
+		dealer_drawn_face = ""
+		dealer_drawn_number = str(dealer_drawn_number)
+		dealer_drawn_card = dealer_drawn_number + " of " + dealer_drawn_type
+		Dealer_Hand.append(dealer_drawn_card)
+	print("Dealer Draws a:\n", dealer_drawn_card)
+	return(dealer_drawn_card)
+
 
 current_card = 0
 player_score = 0
 def ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason, never the actual value of the card.
+	#Hours wasted on scoring alone: 8
 	Player_Hand_Score = []
 	total_hand_score = 0
 
@@ -139,45 +156,32 @@ def ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason,
 		current_card = Player_Hand[card]
 		
 
-		
-		print("next card is being scored here")
-		print("Current Card Being Scored\n", current_card)
-
 
 		#check if string is in current card, then assign value if so.
 		if '2' in current_card:
-			print("this has been ran and the score should be 2")
 			cardscore = int(2)
 		if '3' in current_card:
-			print("this has been ran and the score should be 3")
 			cardscore = int(3)
 			
 		if '4' in current_card:
-			print("this has been ran and the score should be 4")
 			cardscore = int(4)
 			
 		if '5' in current_card:
-			print("this has been ran and the score should be 5")
 			cardscore = int(5)
 			
 		if '6' in current_card:
-			print("this has been ran and the score should be 6")
 			cardscore = int(6)
 			
 		if '7' in current_card:
-			print("this has been ran and the score should be 7")
 			cardscore = int(7)
 			
 		if '8' in current_card:
-			print("this has been ran and the score should be 8")
 			cardscore = int(8)
 			
 		if '9' in current_card:
-			print("this has been ran and the score should be 9")
 			cardscore = int(9)
 
 		if '10' in current_card:
-			print("this has been ran and the score should be 10")
 			cardscore = int(10)
 			print(current_card, "debug2")
 		if 'K' in current_card:
@@ -187,59 +191,131 @@ def ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason,
 		if 'J' in current_card:
 			cardscore = int(10)
 	
-		#check if card score is actually a value other than 10 or 20, see github for why
-		print(cardscore, ": Supposed to be cardscore after running through all if statements.")
-
 
 		#move cardscore to an existing list, thanks to u/Naive_Programmer_232 on reddit for this trick
 		Player_Hand_Score.append(cardscore)
-		print(Player_Hand_Score, ":Total Player Hand Score")
 		#add our total score together by utilzing which loop of the variable we are on. 
 		total_hand_score += Player_Hand_Score[card]
 		#print our total score
-		print("Current Hand Score:", total_hand_score)
 		player_score = total_hand_score
-		print(player_score)
-		#return our score back.
+		#TODO: Bring total_hand_score OUT of function after it has been completed
+	print("Player Hand Score:", total_hand_score)
+	return player_score
+
+dealer_score = 0
+def Dealer_ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason, never the actual value of the card.
+	#Hours wasted on scoring alone: 8
+	Hand_Score = []
+	total_hand_score = 0
+
+	for card in range(len(Dealer_Hand)):
+		#grab the card we are scoring
+		current_card = Dealer_Hand[card]
+		
+
+
+		#check if string is in current card, then assign value if so.
+		if '2' in current_card:
+			cardscore = int(2)
+		if '3' in current_card:
+			cardscore = int(3)
+			
+		if '4' in current_card:
+			cardscore = int(4)
+			
+		if '5' in current_card:
+			cardscore = int(5)
+			
+		if '6' in current_card:
+			cardscore = int(6)
+			
+		if '7' in current_card:
+			cardscore = int(7)
+			
+		if '8' in current_card:
+			cardscore = int(8)
+			
+		if '9' in current_card:
+
+			cardscore = int(9)
+
+		if '10' in current_card:
+
+			cardscore = int(10)
+			print(current_card, "debug2")
+		if 'K' in current_card:
+			cardscore = int(10)
+		if 'Q' in current_card:
+			cardscore = int(10)
+		if 'J' in current_card:
+			cardscore = int(10)
+
+		#move cardscore to an existing list, thanks to u/Naive_Programmer_232 on reddit for this trick
+		Hand_Score.append(cardscore)
+		#add our total score together by utilzing which loop of the variable we are on. 
+		total_hand_score += Hand_Score[card]
+		#print our total score
+		dealer_score = total_hand_score
+	print("Dealer Hand Score:", total_hand_score)
+	return dealer_score
+		#TODO: Bring dealer_score OUT of function after it has been completed
+	
+
 
 #Input Test for card#
+match_going = False
+PlayerTurn = True
+player_score = 0
+dealer_score = 0
 print("Start")
 draw_card()
 draw_card()
+dealer_draw_card()
+print("Current Dealer Hand \n", Dealer_Hand)
 print("Current Player Hand\n", Player_Hand)
-print(len(Player_Hand), "Length of Player Hand")
-ScoreCard()
-while player_score < 21:
-	player_input = str(input("Stand or Hit"))
-	if player_input == "Hit" or "hit":
-		draw_card()
-		total_hand_score = ScoreCard()
-		print(total_hand_score)
-		Hand_scored = True
+Dealer_ScoreCard()
+player_score = ScoreCard()
+match_going = True
+
+#TODO: Fix problem of card's constantly drawing when player only intends to draw one card.
+while match_going: 
+	#we grab what the user wants to do here
+	player_input = str(input("Stand or Hit:\n"))
+	#we then check what score the player currentl has AND if its their turn
+	while player_score < 21 and PlayerTurn == True:
+		#we check if the player input is asking to hit
+		if player_input == "Hit" or "hit":
+			#if so, we draw the card, score it, print it out
+			draw_card()
+			player_score = ScoreCard()
+			print("Player's Hand Score Currently:\n",player_score)
+			#we then check if the player score is over 21, if it is, player loses.
+			if player_score > 21:
+				print("Past 21")
+				PlayerTurn == False
+
+
+#Dealer's Turn is mostly right, although there is 1000% a better way to code this.
+	#we check if player input is asking to stand on their card
 	if player_input == "Stand" or "stand":
-		#dealer would draw here
-		total_hand_score = ScoreCard()
-		print(total_hand_score)
+			#if it does, we score the current hand and store the variable in total_hand_score
+			total_hand_score = ScoreCard()
+			#make sure PlayerTurn is adjusted
+			PlayerTurn = False
+			#we make it clear it's the dealer's turn now.
+			print("**Dealer's Turn**")
+			dealer_draw_card()
+			dealer_score = Dealer_ScoreCard()
+			if dealer_score <= 16:
+				dealer_draw_card()
+				dealer_score = Dealer_ScoreCard()
+
+	
 
 
 
 
 
-#Player Hit System
-player_hit = False
-DealerTurn = False
-
-#Choice Handler
-def PlayerChoice(action): 
-	if action == "Yes" or "Stand" or "Y":
-		player_hit = False
-		DealerTurn = True
-		return(player_hit)
-	if action == "No" or "Hit" or "N":
-		player_hit = True
-		draw_card()
-		print("Your Current Hand:\n", Player_Hand)
-		return(player_hit)
 
 
 
