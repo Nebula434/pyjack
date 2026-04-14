@@ -1,7 +1,6 @@
 import random
 import pygame 
-import button
-import * from card
+import card
 #pygame variables
 #pygame.init()
 #screen = pygame.display.set_mode((1024,768))
@@ -269,7 +268,7 @@ player_score = 0
 dealer_score = 0
 print("Start")
 card.draw_card()
-draw_card()
+card.draw_card()
 dealer_draw_card()
 print("Current Dealer Hand \n", Dealer_Hand)
 print("Current Player Hand\n", Player_Hand)

@@ -1,3 +1,5 @@
+import random
+import game_file
 Face_cards = ['King','Queen','Jack']
 Card_types = ['Spades', 'Diamonds', 'Hearts', 'Clubs']
 Card_numbers = [1,2,3,4,5,6,7,8,9,10]
@@ -27,7 +29,7 @@ def draw_card(): #some type of variable to put card into dealer or player#
 			drawn_face = Face_cards[2]
 		drawn_face = str(drawn_face)
 		drawn_card = drawn_face + " of " + drawn_type
-		Player_Hand.append(drawn_card)		
+		game_file.Player_Hand.append(drawn_card)		
 
 	if Prob > 0.23:
 		drawn_number = Card_numbers[round(random.uniform(1,9))]
@@ -36,7 +38,7 @@ def draw_card(): #some type of variable to put card into dealer or player#
 		drawn_face = ""
 		drawn_number = str(drawn_number)
 		drawn_card = drawn_number + " of " + drawn_type
-		Player_Hand.append(drawn_card)
+		game_file.Player_Hand.append(drawn_card)
 	print("Player has drawn a: \n", drawn_card)
 
 	return(drawn_card)
