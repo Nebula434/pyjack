@@ -1,14 +1,4 @@
 import random
-import pygame 
-#import card
-#pygame variables
-#pygame.init()
-#screen = pygame.display.set_mode((1024,768))
-#clock = pygame.time.Clock()
-#running = True
-#
-
-
 
 
 #Variables for game
@@ -25,17 +15,6 @@ DealerHandValue = 0
 Prob = random.uniform(0,1)
 Player_Lost = False
 
-
-#image loading
-
-#start_img = pygame.image.load('assests/menu/start_button.png').convert_alpha()
-#quit_img = pygame.image.load('assests/menu/quit_button.png').convert_alpha()
-#settings_img = pygame.image.load('assests/menu/settings_button.png').convert_alpha()
-#title_img = pygame.image.load('assests/menu/title_screen.png').convert_alpha()
-
-#temp_button = pygame.image.load('game_images/button.png')
-#
-
 #Functions to be called throughout the game multiple times#
 
 #TODO: MAKE PLAYER ABLE TO WITHDRAWL#
@@ -44,23 +23,20 @@ def withdrawl():
 	    Player_Hand.pop()
 
 #TODO: MAKE DEALING WORK# I got you fam -Dustin
-# def deal():
+def deal():
 
-
-#	if len(Player_Hand) <= 0:
-#		draw_card()
-#	else:
-#		return
+	if len(Player_Hand) <= 0:
+		draw_card()
+	else:
+		return
 	
 
+	while len(Dealer_Hand) != 5: 
+		if len(Dealer_Hand) <= 0:
+			dealer_draw_card()
+		else:
+			return
 
-#	while len(Dealer_Hand) != 5: 
-#		if len(Dealer_Hand) <= 0:
-#			dealer_draw_card()
-#		else:
-#			return
-
-#TODO: Draw cards on screen when draw button is clicked#
 def draw_card(): #some type of variable to put card into dealer or player#
 	FaceCard = False
 	drawn_card = []
@@ -145,7 +121,7 @@ def dealer_draw_card(): #TODO: CREATE DEALER#
 
 current_card = 0
 player_score = 0
-def ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason, never the actual value of the card.
+def ScoreCard(): 
 	#Hours wasted on scoring alone: 8
 	Player_Hand_Score = []
 	total_hand_score = 0
@@ -195,12 +171,11 @@ def ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason,
 		total_hand_score += Player_Hand_Score[card]
 		#print our total score
 		
-		#TODO: Bring total_hand_score OUT of function after it has been completed
 	print("Player Hand Score:", total_hand_score)
 	return total_hand_score
 
 dealer_score = 0
-def Dealer_ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason, never the actual value of the card.
+def Dealer_ScoreCard(): 
 	#Hours wasted on scoring alone: 8
 	Hand_Score = []
 	total_hand_score = 0
@@ -316,43 +291,3 @@ if dealer_score == player_score:
 
 		match_going = False # Ends game loop
 input("Press enter to continue")
-#Assigning Colors to the card
-
-#classes utilized for game below here
-class Menu():
-	def __init__(self,x,y, image, scale):
-		width = image.get_width()
-		height = image.get_height()
-
-		self.image = pygame.transform.scale(image,(int(width * scale),int(height * scale)))
-		self.image = image
-		self.rect = self.image.get_rect()
-		self.rect.topleft = (x,y)
-	#def draw(self):
-		#screen.blit(self.image,(self.rect.x, self.rect.y))
-		
-
-#start_button = button.Button(483, 350, start_img,0.5)
-#exit_button = button.Button(483, 425, quit_img,0.5)
-#title_screen = Menu(0, -100, title_img, 2)
-#player_pos = pygame.Vector2(screen.get_width() / 2, screen.get_height() / 2)
-#GAME LOOP#
-#while running: 
-
-
-	#print(pygame.mouse.get_pos())
-#	screen.fill("white")
-#	title_screen.draw()	
-#	if start_button.draw(screen) == True:
-#		match_start = True
-#		print('Start')
-#	if exit_button.draw(screen) == True:
-#		print("exiting game")
-#		running = False
-	#closes game#
-#	for event in pygame.event.get():
-#		if event.type == pygame.QUIT:
-#			running = False
-	#			#
-#	pygame.display.flip() # think of this as updating the screen with ur work
-#	clock.tick(60) # frame limitre
