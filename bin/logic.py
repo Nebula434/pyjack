@@ -1,5 +1,5 @@
 import random
-
+import card as deck 
 
 #Variables for game
 Face_cards = ['King','Queen','Jack']
@@ -156,7 +156,7 @@ def ScoreCard():
 
 		if '10' in current_card:
 			cardscore = int(10)
-			print(current_card, "debug2")
+			print(current_card)
 		if 'K' in current_card:
 			cardscore = int(10)
 		if 'Q' in current_card:
@@ -242,9 +242,9 @@ dealer_score = 0
 
 print("Start")
 # Using the local draw_card() instead of the card.draw_card()
-draw_card()
-draw_card()
-dealer_draw_card()
+deck.draw_card()
+deck.draw_card()
+deck.dealer_draw_card()
 
 print("Current Dealer Hand \n", Dealer_Hand)
 print("Current Player Hand\n",Player_Hand)
