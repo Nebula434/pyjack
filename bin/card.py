@@ -2,6 +2,27 @@ import random
 Face_cards = ['King','Queen','Jack']
 Card_types = ['Spades', 'Diamonds', 'Hearts', 'Clubs']
 Card_numbers = [1,2,3,4,5,6,7,8,9,10]
+#TODO: MAKE PLAYER ABLE TO WITHDRAWL#
+#def withdrawl():
+#    while len(Player_Hand) != 0:
+#	    Player_Hand.pop()
+
+#def deal():#TODO: MAKE DEALING WORK# I got you fam -Dustin
+
+#
+#	if len(Logic.Player_Hand) <= 0:
+#		draw_card()
+#	else:
+#		return
+#	
+#
+#	while len(Logic.Dealer_Hand) != 5: 
+#		if len(Logic.Dealer_Hand) <= 0:
+#			dealer_draw_card()
+#		else:
+#			return
+
+
 def draw_card(): #some type of variable to put card into dealer or player#
 	import logic as Logic
 	FaceCard = False
@@ -102,35 +123,57 @@ def ScoreCard():
     #check if string is in current card, then assign value if so.
         if '2' in current_card:
             cardscore = int(2)
+
+
         if '3' in current_card:
             cardscore = int(3)	
+
+
         if '4' in current_card:
-            cardscore = int(4)	
+            cardscore = int(4)
+
+
         if '5' in current_card:
-            cardscore = int(5)	
+            cardscore = int(5)
+
+
         if '6' in current_card:
             cardscore = int(6)	
+
         if '7' in current_card:
-            cardscore = int(7)	
+            cardscore = int(7)
+
+
+
         if '8' in current_card:
-            cardscore = int(8)	
+            cardscore = int(8)
+
+
         if '9' in current_card:
             cardscore = int(9)
+
         if '10' in current_card:
             cardscore = int(10)
+
         if 'K' in current_card:
             cardscore = int(10)
+
         if 'Q' in current_card:
             cardscore = int(10)
+
         if 'J' in current_card:
             cardscore = int(10)
+
+
 #move cardscore to an existing list, thanks to u/Naive_Programmer_232 on reddit for this trick
         Player_Hand_Score.append(cardscore)
         #add our total score together by utilzing which loop of the variable we are on. 
         total_hand_score += Player_Hand_Score[card]
 #print our total score
         print("Player Hand Score:", total_hand_score)
-        return total_hand_score
+    return total_hand_score
+
+
 
 dealer_score = 0
 def Dealer_ScoreCard():
@@ -175,4 +218,4 @@ def Dealer_ScoreCard():
         total_hand_score += Hand_Score[card]
 #print our total score
         print("Dealer Hand Score:", total_hand_score)
-        return total_hand_score
+    return total_hand_score
