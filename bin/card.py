@@ -169,8 +169,6 @@ def ScoreCard():
         Player_Hand_Score.append(cardscore)
         #add our total score together by utilzing which loop of the variable we are on. 
         total_hand_score += Player_Hand_Score[card]
-#print our total score
-        print("Player Hand Score:", total_hand_score)
     return total_hand_score
 
 
@@ -216,6 +214,4 @@ def Dealer_ScoreCard():
         Hand_Score.append(cardscore)
         #add our total score together by utilzing which loop of the variable we are on. 
         total_hand_score += Hand_Score[card]
-#print our total score
-        print("Dealer Hand Score:", total_hand_score)
     return total_hand_score

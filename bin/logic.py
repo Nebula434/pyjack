@@ -32,9 +32,10 @@ deck.dealer_draw_card()
 print("Current Dealer Hand \n", Dealer_Hand)
 print("Current Player Hand\n",Player_Hand)
 
-deck.Dealer_ScoreCard()
+d_score = deck.Dealer_ScoreCard()
 player_score = deck.ScoreCard()
-
+print("Dealer's Hand Score:\n", d_score)
+print("Player's Hand Score:\n", player_score)
 # The hopefully working game loop :)
 while match_going and PlayerTurn:
 	# Grab input inside the loop so it asks every time
