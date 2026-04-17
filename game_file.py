@@ -1,12 +1,13 @@
 import random
 import pygame 
-import card
+#import card
 #pygame variables
 #pygame.init()
 #screen = pygame.display.set_mode((1024,768))
 #clock = pygame.time.Clock()
 #running = True
 #
+
 
 
 
@@ -23,6 +24,7 @@ HandValue = 0
 DealerHandValue = 0
 Prob = random.uniform(0,1)
 Player_Lost = False
+
 
 #image loading
 
@@ -41,22 +43,22 @@ def withdrawl():
     while len(Player_Hand) != 0:
 	    Player_Hand.pop()
 
-#TODO: MAKE DEALING WORK#
-def deal():
+#TODO: MAKE DEALING WORK# I got you fam -Dustin
+# def deal():
 
 
-	if len(Player_Hand) <= 0:
-		draw_card()
-	else:
-		return
+#	if len(Player_Hand) <= 0:
+#		draw_card()
+#	else:
+#		return
 	
 
 
-	while len(Dealer_Hand) != 5: 
-		if len(Dealer_Hand) <= 0:
-			dealer_draw_card()
-		else:
-			return
+#	while len(Dealer_Hand) != 5: 
+#		if len(Dealer_Hand) <= 0:
+#			dealer_draw_card()
+#		else:
+#			return
 
 #TODO: Draw cards on screen when draw button is clicked#
 def draw_card(): #some type of variable to put card into dealer or player#
@@ -98,8 +100,6 @@ def draw_card(): #some type of variable to put card into dealer or player#
 	print("Player has drawn a: \n", drawn_card)
 
 	return(drawn_card)
-
-
 
 
 #DEALER MECHANICS#
@@ -154,8 +154,6 @@ def ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason,
 		#grab the card we are scoring
 		current_card = Player_Hand[card]
 		
-
-
 		#check if string is in current card, then assign value if so.
 		if '2' in current_card:
 			cardscore = int(2)
@@ -196,10 +194,10 @@ def ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason,
 		#add our total score together by utilzing which loop of the variable we are on. 
 		total_hand_score += Player_Hand_Score[card]
 		#print our total score
-		player_score = total_hand_score
+		
 		#TODO: Bring total_hand_score OUT of function after it has been completed
 	print("Player Hand Score:", total_hand_score)
-	return player_score
+	return total_hand_score
 
 dealer_score = 0
 def Dealer_ScoreCard(): #Current bug only prints the value of 10 or 20 for some reason, never the actual value of the card.
@@ -262,72 +260,62 @@ def Dealer_ScoreCard(): #Current bug only prints the value of 10 or 20 for some 
 
 
 #Input Test for card#
-match_going = False
+match_going = True
 PlayerTurn = True
-player_score = 0
+total_hand_score = 0
 dealer_score = 0
+
 print("Start")
-card.draw_card()
-card.draw_card()
+# Using the local draw_card() instead of the card.draw_card()
+draw_card()
+draw_card()
 dealer_draw_card()
+
 print("Current Dealer Hand \n", Dealer_Hand)
-print("Current Player Hand\n", Player_Hand)
+print("Current Player Hand\n",Player_Hand)
+
 Dealer_ScoreCard()
 player_score = ScoreCard()
-match_going = True
 
-#TODO: Fix problem of card's constantly drawing when player only intends to draw one card.
-while match_going: 
-	#we grab what the user wants to do here
-	player_input = str(input("Stand or Hit:\n"))
-	#we then check what score the player currentl has AND if its their turn
-	while player_score < 21 and PlayerTurn == True:
-		#we check if the player input is asking to hit
-		if player_input == "Hit" or "hit":
-			#if so, we draw the card, score it, print it out
-			draw_card()
-			player_score = ScoreCard()
-			print("Player's Hand Score Currently:\n",player_score)
-			#we then check if the player score is over 21, if it is, player loses.
-			if player_score > 21:
-				print("Past 21")
-				PlayerTurn == False
+# The hopefully working game loop :)
+while match_going and PlayerTurn:
+	# Grab input inside the loop so it asks every time
+	player_input = input("Stand or Hit:\n").lower()
 
+	if player_input == "hit":
+		draw_card()
+		player_score = ScoreCard()
+		print("Player's Hand Score Currently:\n", player_score)
 
-#Dealer's Turn is mostly right, although there is 1000% a better way to code this.
-	#we check if player input is asking to stand on their card
-	if player_input == "Stand" or "stand":
-			#if it does, we score the current hand and store the variable in total_hand_score
-			total_hand_score = ScoreCard()
-			#make sure PlayerTurn is adjusted
+		# Check if they busted
+		if player_score > 21:
+			print("Past 21! You busted...")
 			PlayerTurn = False
-			#we make it clear it's the dealer's turn now.
-			print("**Dealer's Turn**")
+			match_going = False
+
+	elif player_input == "stand":
+		PlayerTurn = False
+		print("**Dealer's Turn**")
+
+		dealer_draw_card()
+		dealer_score = Dealer_ScoreCard()
+
+		# Dealer must hit until they beat 16
+		while dealer_score <= 16:
 			dealer_draw_card()
 			dealer_score = Dealer_ScoreCard()
-			if dealer_score <= 16:
-				dealer_draw_card()
-				dealer_score = Dealer_ScoreCard()
+			
+			if dealer_score >= player_score and dealer_score <= 21:
+				print("Dealer wins!")
+			elif dealer_score < player_score and player_score <= 21:
+				print("You win!")
+			elif dealer_score > 21:
+				print("Dealer bust you win!")
+if dealer_score == player_score:
+		print("Match was a draw!")
 
-	
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-#
-
-
+		match_going = False # Ends game loop
+input("Press enter to continue")
 #Assigning Colors to the card
 
 #classes utilized for game below here
