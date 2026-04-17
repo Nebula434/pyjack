@@ -84,3 +84,95 @@ def dealer_draw_card(): #TODO: CREATE DEALER#
         Logic.Dealer_Hand.append(dealer_drawn_card)
         print("Dealer Draws a:\n", dealer_drawn_card)
         return(dealer_drawn_card)
+
+
+#Scoring Mechanics 
+current_card = 0
+player_score = 0
+def ScoreCard():
+    import logic as Logic
+
+    #Hours wasted on scoring alone: 8
+    Player_Hand_Score = []
+    total_hand_score = 0
+
+    for card in range(len(Logic.Player_Hand)):
+    #grab the card we are scoring
+        current_card = Logic.Player_Hand[card]
+    #check if string is in current card, then assign value if so.
+        if '2' in current_card:
+            cardscore = int(2)
+        if '3' in current_card:
+            cardscore = int(3)	
+        if '4' in current_card:
+            cardscore = int(4)	
+        if '5' in current_card:
+            cardscore = int(5)	
+        if '6' in current_card:
+            cardscore = int(6)	
+        if '7' in current_card:
+            cardscore = int(7)	
+        if '8' in current_card:
+            cardscore = int(8)	
+        if '9' in current_card:
+            cardscore = int(9)
+        if '10' in current_card:
+            cardscore = int(10)
+        if 'K' in current_card:
+            cardscore = int(10)
+        if 'Q' in current_card:
+            cardscore = int(10)
+        if 'J' in current_card:
+            cardscore = int(10)
+#move cardscore to an existing list, thanks to u/Naive_Programmer_232 on reddit for this trick
+        Player_Hand_Score.append(cardscore)
+        #add our total score together by utilzing which loop of the variable we are on. 
+        total_hand_score += Player_Hand_Score[card]
+#print our total score
+        print("Player Hand Score:", total_hand_score)
+        return total_hand_score
+
+dealer_score = 0
+def Dealer_ScoreCard():
+    import logic as Logic
+
+    #Hours wasted on scoring alone: 8
+    Hand_Score = []
+    total_hand_score = 0
+
+    for card in range(len(Logic.Dealer_Hand)):
+    #grab the card we are scoring
+        current_card = Logic.Dealer_Hand[card]
+    #check if string is in current card, then assign value if so.
+        if '2' in current_card:
+            cardscore = int(2)
+        if '3' in current_card:
+            cardscore = int(3)	
+        if '4' in current_card:
+            cardscore = int(4)	
+        if '5' in current_card:
+            cardscore = int(5)	
+        if '6' in current_card:
+            cardscore = int(6)	
+        if '7' in current_card:
+            cardscore = int(7)	
+        if '8' in current_card:
+            cardscore = int(8)	
+        if '9' in current_card:
+            cardscore = int(9)
+        if '10' in current_card:
+            cardscore = int(10)
+        print(current_card)
+        if 'K' in current_card:
+            cardscore = int(10)
+        if 'Q' in current_card:
+            cardscore = int(10)
+        if 'J' in current_card:
+            cardscore = int(10)
+#move cardscore to an existing list, thanks to u/Naive_Programmer_232 on reddit for this trick
+        Hand_Score.append(cardscore)
+        #add our total score together by utilzing which loop of the variable we are on. 
+        total_hand_score += Hand_Score[card]
+#print our total score
+        print("Dealer Hand Score:", total_hand_score)
+        return total_hand_score

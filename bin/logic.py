@@ -249,8 +249,8 @@ deck.dealer_draw_card()
 print("Current Dealer Hand \n", Dealer_Hand)
 print("Current Player Hand\n",Player_Hand)
 
-Dealer_ScoreCard()
-player_score = ScoreCard()
+deck.Dealer_ScoreCard()
+player_score = deck.ScoreCard()
 
 # The hopefully working game loop :)
 while match_going and PlayerTurn:
@@ -258,8 +258,8 @@ while match_going and PlayerTurn:
 	player_input = input("Stand or Hit:\n").lower()
 
 	if player_input == "hit":
-		draw_card()
-		player_score = ScoreCard()
+		deck.draw_card()
+		player_score = deck.ScoreCard()
 		print("Player's Hand Score Currently:\n", player_score)
 
 		# Check if they busted
@@ -272,13 +272,13 @@ while match_going and PlayerTurn:
 		PlayerTurn = False
 		print("**Dealer's Turn**")
 
-		dealer_draw_card()
-		dealer_score = Dealer_ScoreCard()
+		deck.dealer_draw_card()
+		dealer_score = deck.Dealer_ScoreCard()
 
 		# Dealer must hit until they beat 16
 		while dealer_score <= 16:
-			dealer_draw_card()
-			dealer_score = Dealer_ScoreCard()
+			deck.dealer_draw_card()
+			dealer_score = deck.Dealer_ScoreCard()
 			
 			if dealer_score >= player_score and dealer_score <= 21:
 				print("Dealer wins!")
