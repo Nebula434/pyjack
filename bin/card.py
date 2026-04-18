@@ -20,7 +20,7 @@ def deal(cards_wanted,hand):#TODO: MAKE DEALING WORK# I got you fam -Dustin
             draw_card()
     return hand_dealt
 
-def draw_card(): #some type of variable to put card into dealer or player#
+def draw_card_old(): #some type of variable to put card into dealer or player#
     import logic as Logic
     FaceCard = False
     drawn_card = []
@@ -61,7 +61,7 @@ def draw_card(): #some type of variable to put card into dealer or player#
 
     return(drawn_card)
 
-def draw_card_new(hand,user): #some type of variable to put card into dealer or player#
+def draw_card(hand,user): #some type of variable to put card into dealer or player#
     import logic as Logic
     FaceCard = False
     User = str(user)

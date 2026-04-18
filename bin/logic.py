@@ -101,6 +101,8 @@ if user_continue_match == "Y":
 	player_score = 0
 	dealer_score = 0
 	startMatch() #BUG: Hand & Score is resetting AFTER startMatch() is called
+	player_score = deck.ScoreCard(Player_Hand)
+	dealer_score = deck.ScoreCard(Dealer_Hand)
 	user_continue_match = ""
 
 if user_continue_match == "N":
