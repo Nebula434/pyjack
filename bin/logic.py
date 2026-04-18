@@ -24,11 +24,14 @@ total_hand_score = 0
 dealer_score = 0
 def startMatch():
     match_going == True
-    deck.draw_card()
-    deck.draw_card()
-    deck.dealer_draw_card()
+    deck.draw_card(Player_Hand,"Player")
+    deck.draw_card(Player_Hand,"Player")
+    deck.draw_card(Dealer_Hand,"Dealer")
+    player_score = deck.ScoreCard(Player_Hand)
+    d_score = deck.ScoreCard(Dealer_Hand)
     print("Current Dealer Hand \n", Dealer_Hand)
     print("Current Player Hand\n", Player_Hand)
+    return player_score, d_score
 
 
 
@@ -37,7 +40,7 @@ def endMatch():
 	return match_going
 
 print("Start")
-# Using the local draw_card() instead of the card.draw_card()
+#Bug,
 
 #deck.deal(int(2),Player_Hand)
 #deck.deal(int(1),Dealer_Hand)
@@ -53,12 +56,12 @@ while match_going and PlayerTurn:
 	player_input = input("Stand or Hit:\n").lower()
 
 	if player_input == "hit":
-		deck.draw_card()
+		deck.draw_card(Player_Hand,"Player")
 		player_score = deck.ScoreCard(Player_Hand)
 		print("Player's Hand Score Currently:\n", player_score)
 
 		# Check if they busted
-		if player_score > 21:
+	if player_score > 21:
 			print("Past 21! You busted...")
 			PlayerTurn = False
 			match_going = False
@@ -66,13 +69,11 @@ while match_going and PlayerTurn:
 	elif player_input == "stand":
 		PlayerTurn = False
 		print("**Dealer's Turn**")
-
-		deck.dealer_draw_card()
+		deck.draw_card(Dealer_Hand,"Dealer")
 		dealer_score = deck.ScoreCard(Dealer_Hand)
-
 		# Dealer must hit until they beat 16
 		while dealer_score <= 16:
-			deck.dealer_draw_card()
+			deck.draw_card(Dealer_Hand,"Dealer")
 			dealer_score = deck.ScoreCard(Dealer_Hand)
 			
 			if dealer_score >= player_score and dealer_score <= 21:
@@ -89,4 +90,18 @@ while match_going and PlayerTurn:
 if dealer_score == player_score:
         print("Match was a draw!")
         match_going = endMatch() # Ends game loop
-input("Press enter to continue")
+
+user_continue_match = str(input("Continue Playing? Y/N").upper())
+if user_continue_match == "Y":
+	PlayerTurn = True
+	Player_Hand.clear()
+	Dealer_Hand.clear()
+	Player_Hand = []
+	Dealer_Hand = []
+	player_score = 0
+	dealer_score = 0
+	startMatch() #BUG: Hand & Score is resetting AFTER startMatch() is called
+	user_continue_match = ""
+
+if user_continue_match == "N":
+	quit()

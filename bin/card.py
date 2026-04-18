@@ -21,48 +21,93 @@ def deal(cards_wanted,hand):#TODO: MAKE DEALING WORK# I got you fam -Dustin
     return hand_dealt
 
 def draw_card(): #some type of variable to put card into dealer or player#
-	import logic as Logic
-	FaceCard = False
-	drawn_card = []
-	drawn_type  = round(random.uniform(0,3))
-	if drawn_type == 0:
-		drawn_type = "Spade"
-	if drawn_type == 1:
-		drawn_type = "Diamonds"
-	if drawn_type == 2:
-		drawn_type = "Hearts"
-	if drawn_type == 3:
-		drawn_type = "Clubs"
-		
-	Prob = random.uniform(0,1)
-	if Prob <= 0.23:
-		drawn_number = ""
-		drawn_card.append(drawn_type)
-		drawn_face  = round(random.uniform(1,3))
-		if drawn_face == 1: 
-			drawn_face = Face_cards[0]
-		if drawn_face == 2:
-			drawn_face = Face_cards[1]
-		if drawn_face == 3:
-			drawn_face = Face_cards[2]
-		drawn_face = str(drawn_face)
-		drawn_card = drawn_face + " of " + drawn_type
-		Logic.Player_Hand.append(drawn_card)		
+    import logic as Logic
+    FaceCard = False
+    drawn_card = []
+    drawn_type  = round(random.uniform(0,3))
+    if drawn_type == 0:
+        drawn_type = "Spade"
+    if drawn_type == 1:
+        drawn_type = "Diamonds"
+    if drawn_type == 2:
+        drawn_type = "Hearts"
+    if drawn_type == 3:
+        drawn_type = "Clubs"
+        
+    Prob = random.uniform(0,1)
+    if Prob <= 0.23:
+        drawn_number = ""
+        drawn_card.append(drawn_type)
+        drawn_face  = round(random.uniform(1,3))
+        if drawn_face == 1: 
+            drawn_face = Face_cards[0]
+        if drawn_face == 2:
+            drawn_face = Face_cards[1]
+        if drawn_face == 3:
+            drawn_face = Face_cards[2]
+        drawn_face = str(drawn_face)
+        drawn_card = drawn_face + " of " + drawn_type
+        Logic.Player_Hand.append(drawn_card)		
 
-	if Prob > 0.23:
-		drawn_number = Card_numbers[round(random.uniform(1,9))]
-		if drawn_number == 1:
-			drawn_number = "Ace"
-		drawn_face = ""
-		drawn_number = str(drawn_number)
-		drawn_card = drawn_number + " of " + drawn_type
-		Logic.Player_Hand.append(drawn_card)
-	print("Player has drawn a: \n", drawn_card)
+    if Prob > 0.23:
+        drawn_number = Card_numbers[round(random.uniform(1,9))]
+        if drawn_number == 1:
+            drawn_number = "Ace"
+        drawn_face = ""
+        drawn_number = str(drawn_number)
+        drawn_card = drawn_number + " of " + drawn_type
+        Logic.Player_Hand.append(drawn_card)
+    print("Player has drawn a: \n", drawn_card)
 
-	return(drawn_card)
+    return(drawn_card)
+
+def draw_card_new(hand,user): #some type of variable to put card into dealer or player#
+    import logic as Logic
+    FaceCard = False
+    User = str(user)
+    Hand = hand
+    drawn_card = []
+    drawn_type  = round(random.uniform(0,3))
+    if drawn_type == 0:
+        drawn_type = "Spade"
+    if drawn_type == 1:
+        drawn_type = "Diamonds"
+    if drawn_type == 2:
+        drawn_type = "Hearts"
+    if drawn_type == 3:
+        drawn_type = "Clubs"
+
+
+    Prob = random.uniform(0,1)
+    if Prob <= 0.23:
+        drawn_number = ""
+        drawn_card.append(drawn_type)
+        drawn_face  = round(random.uniform(1,3))
+        if drawn_face == 1: 
+            drawn_face = Face_cards[0]
+        if drawn_face == 2:
+            drawn_face = Face_cards[1]
+        if drawn_face == 3:
+            drawn_face = Face_cards[2]
+        drawn_face = str(drawn_face)
+        drawn_card = drawn_face + " of " + drawn_type
+        Hand.append(drawn_card)		
+
+    if Prob > 0.23:
+        drawn_number = Card_numbers[round(random.uniform(1,9))]
+        if drawn_number == 1:
+            drawn_number = "Ace"
+        drawn_face = ""
+        drawn_number = str(drawn_number)
+        drawn_card = drawn_number + " of " + drawn_type
+        Hand.append(drawn_card)
+    print(User," has drawn a: \n", drawn_card)
+
+    return(drawn_card,hand)
+
 
 #Scoring Mechanics 
-current_card = 0
+current_card = 0 #fixes 
 player_score = 0
 
 def ScoreCard(hand):
