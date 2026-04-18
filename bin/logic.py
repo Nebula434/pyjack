@@ -1,5 +1,5 @@
 import random
-import card as deck 
+import card as deck
 
 #Variables for game
 Face_cards = ['King','Queen','Jack']
@@ -22,18 +22,29 @@ match_going = True
 PlayerTurn = True
 total_hand_score = 0
 dealer_score = 0
+def startMatch():
+    match_going == True
+    deck.draw_card()
+    deck.draw_card()
+    deck.dealer_draw_card()
+    print("Current Dealer Hand \n", Dealer_Hand)
+    print("Current Player Hand\n", Player_Hand)
+
+
+
+def endMatch():
+	match_going = False
+	return match_going
 
 print("Start")
 # Using the local draw_card() instead of the card.draw_card()
-deck.draw_card()
-deck.draw_card()
-deck.dealer_draw_card()
 
-print("Current Dealer Hand \n", Dealer_Hand)
-print("Current Player Hand\n",Player_Hand)
+#deck.deal(int(2),Player_Hand)
+#deck.deal(int(1),Dealer_Hand)
 
-d_score = deck.Dealer_ScoreCard()
-player_score = deck.ScoreCard()
+startMatch()
+d_score = deck.ScoreCard(Dealer_Hand)
+player_score = deck.ScoreCard(Player_Hand)
 print("Dealer's Hand Score:\n", d_score)
 print("Player's Hand Score:\n", player_score)
 # The hopefully working game loop :)
@@ -43,7 +54,7 @@ while match_going and PlayerTurn:
 
 	if player_input == "hit":
 		deck.draw_card()
-		player_score = deck.ScoreCard()
+		player_score = deck.ScoreCard(Player_Hand)
 		print("Player's Hand Score Currently:\n", player_score)
 
 		# Check if they busted
@@ -57,21 +68,25 @@ while match_going and PlayerTurn:
 		print("**Dealer's Turn**")
 
 		deck.dealer_draw_card()
-		dealer_score = deck.Dealer_ScoreCard()
+		dealer_score = deck.ScoreCard(Dealer_Hand)
 
 		# Dealer must hit until they beat 16
 		while dealer_score <= 16:
 			deck.dealer_draw_card()
-			dealer_score = deck.Dealer_ScoreCard()
+			dealer_score = deck.ScoreCard(Dealer_Hand)
 			
 			if dealer_score >= player_score and dealer_score <= 21:
 				print("Dealer wins!")
+				match_going = endMatch()
 			elif dealer_score < player_score and player_score <= 21:
 				print("You win!")
+				match_going = endMatch()
 			elif dealer_score > 21:
 				print("Dealer bust you win!")
-if dealer_score == player_score:
-		print("Match was a draw!")
+				match_going = endMatch()
 
-		match_going = False # Ends game loop
+
+if dealer_score == player_score:
+        print("Match was a draw!")
+        match_going = endMatch() # Ends game loop
 input("Press enter to continue")
