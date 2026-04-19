@@ -16,7 +16,9 @@ Prob = random.uniform(0,1)
 Player_Lost = False
 
 #Functions to be called throughout the game multiple times#
-
+# deck.draw_card((hand you are giving the card to), "Text you want to print out")
+# deck.ScoreCard((hand you are scoring aka Dealer_Hand or Player_Hand))
+#
 #Input Test for card#
 match_going = True
 PlayerTurn = True
@@ -44,7 +46,7 @@ d_score = deck.ScoreCard(Dealer_Hand)
 player_score = deck.ScoreCard(Player_Hand)
 print("Dealer's Hand Score:\n", d_score)
 print("Player's Hand Score:\n", player_score)
-# The hopefully working game loop :)
+# The hopefully working game loop :) - This is awesome thank u Dustin :D
 while match_going and PlayerTurn:
 	# Grab input inside the loop so it asks every time
 	player_input = input("Stand or Hit:\n").lower()
@@ -95,7 +97,7 @@ if user_continue_match == "Y":
 	Dealer_Hand = []
 	player_score = 0
 	dealer_score = 0
-	startMatch() #BUG: Hand & Score is resetting AFTER startMatch() is called
+	startMatch() 
 	player_score = deck.ScoreCard(Player_Hand)
 	dealer_score = deck.ScoreCard(Dealer_Hand) 
 	user_continue_match = ""
