@@ -1,4 +1,15 @@
-As it stands this project is not fully ready, however the base logic is there. 
-Plans to port into a game engine or utilize PyGame. 
+# Game Overview
 
-Contributers welcome!
+Blackjack, first to 21 wins! 
+No currency (yet) 
+
+# How to Install
+### Download the latest release on the right
+### Drag the PyJack folder to a place you'll remember
+### Open the PyJack Folder
+### Run logic.exe 
+
+# Issues / Contributing 
+All is welcome to help 
+
+If submitting an issue, please include steps to reproduce!
