@@ -4,10 +4,10 @@ Blackjack, first to 21 wins!
 No currency (yet) 
 
 # How to Install
-Download the latest release on the right
-Drag the PyJack folder to a place you'll remember
-Open the PyJack Folder
-Run logic.exe 
+### Download the latest release on the right
+### Drag the PyJack folder to a place you'll remember
+### Open the PyJack Folder
+### Run logic.exe 
 
 # Issues / Contributing 
 All is welcome to help 
