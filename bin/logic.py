@@ -38,13 +38,7 @@ def startMatch():
 def endMatch():
 	match_going = False
 	return match_going
-
 print("Start")
-#Bug,
-
-#deck.deal(int(2),Player_Hand)
-#deck.deal(int(1),Dealer_Hand)
-
 startMatch()
 d_score = deck.ScoreCard(Dealer_Hand)
 player_score = deck.ScoreCard(Player_Hand)
@@ -65,6 +59,7 @@ while match_going and PlayerTurn:
 			print("Past 21! You busted...")
 			PlayerTurn = False
 			match_going = False
+
 
 	elif player_input == "stand":
 		PlayerTurn = False
@@ -102,8 +97,8 @@ if user_continue_match == "Y":
 	dealer_score = 0
 	startMatch() #BUG: Hand & Score is resetting AFTER startMatch() is called
 	player_score = deck.ScoreCard(Player_Hand)
-	dealer_score = deck.ScoreCard(Dealer_Hand)
+	dealer_score = deck.ScoreCard(Dealer_Hand) 
 	user_continue_match = ""
 
 if user_continue_match == "N":
-	quit()
+	print("Your Are Safe To Close Program")
