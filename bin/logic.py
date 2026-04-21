@@ -24,6 +24,13 @@ match_going = True
 PlayerTurn = True
 total_hand_score = 0
 dealer_score = 0
+def reset():
+    Player_Hand = []
+    Dealer_Hand = []
+    total_hand_score = 0
+    dealer_score = 0
+    d_score = 0
+
 def startMatch():
     match_going == True
     deck.draw_card(Player_Hand,"Player")
@@ -90,14 +97,9 @@ if dealer_score == player_score:
 
 user_continue_match = str(input("Continue Playing? Y/N").upper())
 if user_continue_match == "Y":
+	reset()
+	startMatch()
 	PlayerTurn = True
-	Player_Hand.clear()
-	Dealer_Hand.clear()
-	Player_Hand = []
-	Dealer_Hand = []
-	player_score = 0
-	dealer_score = 0
-	startMatch() 
 	player_score = deck.ScoreCard(Player_Hand)
 	dealer_score = deck.ScoreCard(Dealer_Hand) 
 	user_continue_match = ""
