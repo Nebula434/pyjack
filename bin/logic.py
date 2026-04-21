@@ -23,6 +23,7 @@ match_going = True
 PlayerTurn = True
 total_hand_score = 0
 dealer_score = 0
+win_streak = 0
 def reset(): #NOTE: Purpose of this function is to reset values that need to be used in the next game loop
     Player_Hand.clear()
     Dealer_Hand.clear()
@@ -64,6 +65,7 @@ while running:
                     print("Past 21! You busted...")
                     PlayerTurn = False
                     match_going = False
+                    win_streak = 0
 
         #Player has chosen to stand, the round is over for them, let the dealer play
         elif player_input == "stand":
@@ -78,19 +80,22 @@ while running:
                 if dealer_score > player_score and dealer_score <= 21: 
                     print("Dealer wins!")
                     match_going = end_match()
+                    win_streak = 0
                 elif dealer_score > 21:
                     print("Dealer bust you win!")
                     match_going = end_match()
+                    win_streak += 1
             if dealer_score < player_score and player_score <= 21:
                 print("You win!")
                 match_going = end_match()
+                win_streak += 1
 
         elif dealer_score == player_score:
             print("Match was a draw!")
             match_going = end_match() # Ends game loop
 
 
-
+    print("Current User Win Streak:",win_streak)
     user_continue_match = input("Continue Playing? Y/N").upper()
     if user_continue_match == "Y":
         reset()
