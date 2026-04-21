@@ -58,11 +58,11 @@ while match_going and PlayerTurn:
         player_score = deck.ScoreCard(Player_Hand)
         print("Player's Hand Score Currently:\n", player_score)
 
-        # Check if they busted
-    if player_score > 21:
-            print("Past 21! You busted...")
-            PlayerTurn = False
-            match_going = False
+            # Check if they busted
+        if player_score > 21:
+                print("Past 21! You busted...")
+                PlayerTurn = False
+                match_going = False
 
 
     elif player_input == "stand":
