@@ -23,6 +23,7 @@ match_going = True
 PlayerTurn = True
 total_hand_score = 0
 dealer_score = 0
+WinCounter = 0
 def reset(): #NOTE: Purpose of this function is to reset values that need to be used in the next loop
     Player_Hand.clear()
     Dealer_Hand.clear()
@@ -70,29 +71,35 @@ while match_going and PlayerTurn:
         print("**Dealer's Turn**")
         deck.draw_card(Dealer_Hand,"Dealer")
         dealer_score = deck.ScoreCard(Dealer_Hand)
-        # Dealer must hit until they beat 16
-        while dealer_score <= 16:
+        # Dealer must hit until they beat 16 or land on 16
+        while dealer_score < 16:
             deck.draw_card(Dealer_Hand,"Dealer")
             dealer_score = deck.ScoreCard(Dealer_Hand)
-
+            if dealer_score == 16 and player_score > dealer_score:
+                print("You win!")
+                match_going = endMatch()
+                WinCounter += 1
+            if dealer_score == 16 and dealer_score > player_score:
+                print("Dealer Wins!")
+                match_going = endMatch()
             if dealer_score >= player_score and dealer_score <= 21:
                 print("Dealer wins!")
                 match_going = endMatch()
             elif dealer_score < player_score and player_score <= 21:
                 print("You win!")
                 match_going = endMatch()
+                WinCounter += 1
             elif dealer_score > 21:
                 print("Dealer bust you win!")
                 match_going = endMatch()
+                WinCounter += 1
+            elif dealer_score == player_score:
+                print("Match was a draw!")
+                match_going = endMatch() # Ends game loop
 
 
-    elif dealer_score == player_score:
-        print("Match was a draw!")
-        match_going = endMatch() # Ends game loop
-
-
-
-user_continue_match = str(input("Continue Playing? Y/N").upper())
+print("Current Win Streak:",WinCounter)
+user_continue_match = str(input("\nContinue Playing? Y/N").upper())
 if user_continue_match == "Y":
     reset()
     match_going = True
@@ -100,7 +107,5 @@ if user_continue_match == "Y":
     startMatch()
     player_score = deck.ScoreCard(Player_Hand)
     dealer_score = deck.ScoreCard(Dealer_Hand) 
-    user_continue_match = ""
-    player_input = ""
-elif user_continue_match == "N":
+if user_continue_match == "N":
     print("Your Are Safe To Close Program")
