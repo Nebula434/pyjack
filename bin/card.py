@@ -10,7 +10,6 @@ Card_numbers = [1,2,3,4,5,6,7,8,9,10]
 #	    Player_Hand.pop()
 
 def deal(cards_wanted,hand):#TODO: MAKE DEALING WORK# I got you fam -Dustin
-    import logic as Logic
     hand_dealt = hand
     for cards_needed in range(cards_wanted): 
         if str(hand_dealt[0]) == str(Logic.Dealer_Hand[0]):
@@ -21,7 +20,6 @@ def deal(cards_wanted,hand):#TODO: MAKE DEALING WORK# I got you fam -Dustin
     return hand_dealt
 
 def draw_card(hand,user): #some type of variable to put card into dealer or player#
-    import logic as Logic
     FaceCard = False
     User = str(user)
     Hand = hand
@@ -70,7 +68,6 @@ current_card = 0
 player_score = 0
 
 def ScoreCard(hand):
-    import logic as Logic
 
     #Hours wasted on scoring alone: 8
     Hand_Score = []
