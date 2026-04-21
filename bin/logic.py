@@ -39,13 +39,9 @@ def startMatch():
     print("Current Dealer Hand \n", Dealer_Hand)
     print("Current Player Hand\n", Player_Hand)
     return (match_going)
-def top():
-        print("Top of the game loop, Start")
-
 def endMatch():
     match_going = False
     return match_going
-top()
 print("Start")
 startMatch()
 d_score = deck.ScoreCard(Dealer_Hand)
@@ -93,6 +89,8 @@ while match_going and PlayerTurn:
     elif dealer_score == player_score:
         print("Match was a draw!")
         match_going = endMatch() # Ends game loop
+
+
 
 user_continue_match = str(input("Continue Playing? Y/N").upper())
 if user_continue_match == "Y":
