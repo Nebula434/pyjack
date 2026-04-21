@@ -39,11 +39,13 @@ def startMatch():
     print("Current Dealer Hand \n", Dealer_Hand)
     print("Current Player Hand\n", Player_Hand)
     return (match_going)
-
+def top():
+        print("Top of the game loop, Start")
 
 def endMatch():
     match_going = False
     return match_going
+top()
 print("Start")
 startMatch()
 d_score = deck.ScoreCard(Dealer_Hand)
@@ -76,7 +78,7 @@ while match_going and PlayerTurn:
         while dealer_score <= 16:
             deck.draw_card(Dealer_Hand,"Dealer")
             dealer_score = deck.ScoreCard(Dealer_Hand)
-            
+
             if dealer_score >= player_score and dealer_score <= 21:
                 print("Dealer wins!")
                 match_going = endMatch()
@@ -88,18 +90,19 @@ while match_going and PlayerTurn:
                 match_going = endMatch()
 
 
-if dealer_score == player_score:
+    elif dealer_score == player_score:
         print("Match was a draw!")
         match_going = endMatch() # Ends game loop
 
 user_continue_match = str(input("Continue Playing? Y/N").upper())
 if user_continue_match == "Y":
     reset()
-    match_going = startMatch()
+    match_going = True
     PlayerTurn = True
+    startMatch()
     player_score = deck.ScoreCard(Player_Hand)
     dealer_score = deck.ScoreCard(Dealer_Hand) 
     user_continue_match = ""
     player_input = ""
-if user_continue_match == "N":
+elif user_continue_match == "N":
     print("Your Are Safe To Close Program")
