@@ -9,7 +9,13 @@ Porting Logic over to Godot(?)
 ### Download the latest release on the right
 ### Drag the PyJack folder to a place you'll remember
 ### Open the PyJack Folder
-### Run logic.exe 
+### Run logic.exe
+
+# Special Thanks
+"furas" on GitHub / Stack Overflow for helping me fix the loop ending early
+
+
+imthalaw on GitHub for helping fix the infinite draw bug
 
 # Issues / Contributing 
 All is welcome to help 
