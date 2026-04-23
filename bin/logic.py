@@ -59,7 +59,6 @@ while running:
             deck.draw_card(Player_Hand,"Player")
             player_score = deck.ScoreCard(Player_Hand)
             print("Player's Hand Score Currently:\n", player_score)
-
                 # Check if they busted after drawing their latest card
             if player_score > 21:
                     print("Past 21! You busted...")

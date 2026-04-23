@@ -78,6 +78,9 @@ def ScoreCard(hand):
     #grab the card we are scoring
         current_card = Hand_Scored[card]
     #check if string is in current card, then assign value if so.
+        if 'Ace' in current_card:
+            cardscore = int(11)
+
         if '2' in current_card:
             cardscore = int(2)
 
@@ -127,3 +130,22 @@ def ScoreCard(hand):
         #add our total score together by utilzing which loop of the variable we are on. 
         total_hand_score += Hand_Score[card]
     return total_hand_score
+
+test_hand = ["Ace of Spades","Ace of Hearts"]
+
+# attempting to make ace check
+#TODO: grab entire hand, check if ace is the first 
+#3 characters of the string. 
+def ace_check(hand):
+    ace_hand = hand
+
+    for card in ace_hand:
+        
+        if card == "Ace":
+            ace = True
+        else:
+            break
+    return ace
+
+ace = ace_check(test_hand)
+print(ace)
