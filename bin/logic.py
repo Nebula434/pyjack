@@ -60,7 +60,13 @@ while running:
             player_score = deck.ScoreCard(Player_Hand)
             print("Player's Hand Score Currently:\n", player_score)
                 # Check if they busted after drawing their latest card
+            ace = deck.ace_check(Player_Hand)
             if player_score > 21:
+                if ace == True:
+                    print("Ace has saved you from a bust!")
+                    player_score -=10
+                    ace = False
+                else:
                     print("Past 21! You busted...")
                     PlayerTurn = False
                     match_going = False
@@ -76,7 +82,7 @@ while running:
             # Dealer must hit until they beat 16
             while dealer_score <= 16:
                 deck.draw_card(Dealer_Hand,"Dealer")
-                dealer_score = deck.ScoreCard("The Dealer Score is now:",Dealer_Hand)
+                dealer_score = deck.ScoreCard(Dealer_Hand)
                 if dealer_score > player_score and dealer_score <= 21: 
                     print("Dealer Score is now:",dealer_score)
                     print("Dealer wins!")

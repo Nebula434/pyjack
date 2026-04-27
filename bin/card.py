@@ -51,7 +51,7 @@ def draw_card(hand,user): #some type of variable to put card into dealer or play
         Hand.append(drawn_card)		
 
     if Prob > 0.23:
-        drawn_number = Card_numbers[round(random.uniform(1,9))]
+        drawn_number =Card_numbers[round(random.uniform(0,3))]
         if drawn_number == 1:
             drawn_number = "Ace"
         drawn_face = ""
@@ -138,13 +138,15 @@ test_hand = ["Ace of Spades","Ace of Hearts"]
 #3 characters of the string. 
 def ace_check(hand):
     ace_hand = hand
-
-    for card in ace_hand:
-        
-        if card == "Ace":
+    ace = False
+    for card in range(len(ace_hand)):
+        current_card = ace_hand[card]
+        current_card = current_card[0:3]
+        if current_card == "Ace":
             ace = True
         else:
             break
+    
     return ace
 
 ace = ace_check(test_hand)
