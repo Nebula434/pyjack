@@ -6,10 +6,10 @@ Me: 6 in a row!
 <img width="345" height="77" alt="image" src="https://github.com/user-attachments/assets/bc53acfb-7783-4c00-9d41-8535a36378f8" />
 
 # How to Install
-***Download the latest release on the right***
-***Drag the PyJack folder to a place you'll remember***
-***Open the PyJack Folder***
-***Run PyJack.exe***
+1.***Download the latest release on the right***
+2.***Drag the PyJack folder to a place you'll remember***
+3.***Open the PyJack Folder***
+4.***Run PyJack.exe***
 
 # Special Thanks
 ***"furas" on GitHub / Stack Overflow for helping me fix the loop ending early***
