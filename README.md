@@ -1,21 +1,24 @@
 # Game Overview
-
 Blackjack, first to 21 wins! 
-No currency (yet) 
+No currency (yet)
+# Current Highest Score:
+Me: 6 in a row!
+<img width="345" height="77" alt="image" src="https://github.com/user-attachments/assets/bc53acfb-7783-4c00-9d41-8535a36378f8" />
+
 # To-Do List
 Utilizing Godot Engine(?)
 Porting Logic over to Godot(?)
 # How to Install
-### Download the latest release on the right
-### Drag the PyJack folder to a place you'll remember
-### Open the PyJack Folder
-### Run logic.exe
+***Download the latest release on the right***
+***Drag the PyJack folder to a place you'll remember***
+***Open the PyJack Folder***
+***Run PyJack.exe***
 
 # Special Thanks
-"furas" on GitHub / Stack Overflow for helping me fix the loop ending early
+***"furas" on GitHub / Stack Overflow for helping me fix the loop ending early***
 
 
-imthalaw on GitHub for helping fix the infinite draw bug
+***imthalaw on GitHub for helping fix the infinite draw bug***
 
 # Issues / Contributing 
 All is welcome to help 
