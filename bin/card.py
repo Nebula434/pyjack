@@ -26,13 +26,13 @@ def draw_card(hand,user): #some type of variable to put card into dealer or play
     drawn_card = []
     drawn_type  = round(random.uniform(0,3))
     if drawn_type == 0:
-        drawn_type = "Spade"
+        drawn_type = "♤"
     if drawn_type == 1:
-        drawn_type = "Diamonds"
+        drawn_type = "♢"
     if drawn_type == 2:
-        drawn_type = "Hearts"
+        drawn_type = "♡"
     if drawn_type == 3:
-        drawn_type = "Clubs"
+        drawn_type = "♧"
 
 
     Prob = random.uniform(0,1)
@@ -47,16 +47,16 @@ def draw_card(hand,user): #some type of variable to put card into dealer or play
         if drawn_face == 3:
             drawn_face = Face_cards[2]
         drawn_face = str(drawn_face)
-        drawn_card = drawn_face + " of " + drawn_type
+        drawn_card = drawn_face + drawn_type
         Hand.append(drawn_card)		
 
     if Prob > 0.23:
-        drawn_number =Card_numbers[round(random.uniform(0,3))]
+        drawn_number =Card_numbers[round(random.uniform(0,9))]
         if drawn_number == 1:
-            drawn_number = "Ace"
+            drawn_number = "1"
         drawn_face = ""
         drawn_number = str(drawn_number)
-        drawn_card = drawn_number + " of " + drawn_type
+        drawn_card = drawn_number + drawn_type
         Hand.append(drawn_card)
     print(User," has drawn a: \n", drawn_card)
 
@@ -145,7 +145,7 @@ def ace_check(hand):
         if current_card == "Ace":
             ace = True
         else:
-            #print("Your first card was not an Ace")
+            #print("Your card was not an Ace")
             pass
     return ace
 

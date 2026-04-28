@@ -50,7 +50,7 @@ while running:
     dealer_score = deck.ScoreCard(Dealer_Hand)
     print("Dealer's Hand Score:\n", dealer_score)
     print("Player's Hand Score:\n", player_score)
-    ace = deck.ace_check(Player_Hand)
+    ace_player = deck.ace_check(Player_Hand)
     while match_going and PlayerTurn: 
         # Grab input inside the loop so it asks every time
         player_input = input("Stand or Hit:\n").lower()
@@ -61,8 +61,8 @@ while running:
             player_score = deck.ScoreCard(Player_Hand)
             print("Player's Hand Score Currently:\n", player_score)
                 # Check if they busted after drawing their latest card
-            ace = deck.ace_check(Player_Hand)
-            if player_score > 21 and ace:
+            ace_player = deck.ace_check(Player_Hand)
+            if player_score > 21 and ace_player:
                 player_score -= 10
                 print("Saved by your Ace!")
                 print("Player Hand\n", Player_Hand)
@@ -77,16 +77,22 @@ while running:
                 win_streak = 0
 
         #Player has chosen to stand, the round is over for them, let the dealer play
+        #!!DEALER CODE!!!
         elif player_input == "stand":
             PlayerTurn = False
             print("**Dealer's Turn**") #clarifies dealer is playing
             deck.draw_card(Dealer_Hand,"Dealer") #Dealer has drawn
             dealer_score = deck.ScoreCard(Dealer_Hand) #We score the entire hand again after drawing
             print("Dealer Score is now:",dealer_score)
+            ace_dealer = deck.ace_check(Dealer_Hand)
+            if dealer_score > 21 and ace_dealer:
+                dealer_score -= 10
+                print("Dealer Saved by an Ace!")
             # Dealer must hit until they beat 16
             while dealer_score <= 16:
                 deck.draw_card(Dealer_Hand,"Dealer")
                 dealer_score = deck.ScoreCard(Dealer_Hand)
+                print("Dealer Score is now", dealer_score) 
                 if dealer_score > player_score and dealer_score <= 21: 
                     print("Dealer Score is now:",dealer_score)
                     print("Dealer wins!")
@@ -103,10 +109,10 @@ while running:
                 match_going = end_match()
                 win_streak += 1
 
-        elif dealer_score == player_score:
-            print("Dealer Score is now:",dealer_score)
-            print("Match was a draw!")
-            match_going = end_match() # Ends game loop
+            if dealer_score == player_score:
+                print("Dealer Score is now:",dealer_score)
+                print("Match was a draw!")
+                match_going = end_match() # Ends game loop
 
 
     print("Current User Win Streak:",win_streak)
@@ -116,8 +122,9 @@ while running:
         match_going = True
         PlayerTurn = True
         start_match()
-        player_score = deck.ScoreCard(Player_Hand)
-        dealer_score = deck.ScoreCard(Dealer_Hand) 
+        if len(Player_Hand) > 0 and len(Dealer_Hand) > 0:
+            player_score = deck.ScoreCard(Player_Hand)
+            dealer_score = deck.ScoreCard(Dealer_Hand) 
         user_continue_match = ""
         player_input = ""
     else:
