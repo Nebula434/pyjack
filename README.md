@@ -7,8 +7,11 @@ Me: 6 in a row!
 
 # How to Install
 1.***Download the latest release on the right***
+
 2.***Drag the PyJack folder to a place you'll remember***
+
 3.***Open the PyJack Folder***
+
 4.***Run PyJack.exe***
 
 # Special Thanks
