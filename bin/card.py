@@ -131,7 +131,7 @@ def ScoreCard(hand):
         total_hand_score += Hand_Score[card]
     return total_hand_score
 
-test_hand = ["Ace of Spades","Ace of Hearts"]
+test_hand = ["5 of Hearts","Ace of Hearts"]
 
 # attempting to make ace check
 #TODO: grab entire hand, check if ace is the first 
@@ -140,13 +140,13 @@ def ace_check(hand):
     ace_hand = hand
     ace = False
     for card in range(len(ace_hand)):
-        current_card = ace_hand[card]
+        current_card = ace_hand[(0+card)]
         current_card = current_card[0:3]
         if current_card == "Ace":
             ace = True
         else:
-            break
-    
+            #print("Your first card was not an Ace")
+            pass
     return ace
 
 ace = ace_check(test_hand)

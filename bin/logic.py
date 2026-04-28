@@ -50,6 +50,7 @@ while running:
     dealer_score = deck.ScoreCard(Dealer_Hand)
     print("Dealer's Hand Score:\n", dealer_score)
     print("Player's Hand Score:\n", player_score)
+    ace = deck.ace_check(Player_Hand)
     while match_going and PlayerTurn: 
         # Grab input inside the loop so it asks every time
         player_input = input("Stand or Hit:\n").lower()
@@ -61,16 +62,19 @@ while running:
             print("Player's Hand Score Currently:\n", player_score)
                 # Check if they busted after drawing their latest card
             ace = deck.ace_check(Player_Hand)
+            if player_score > 21 and ace:
+                player_score -= 10
+                print("Saved by your Ace!")
+                print("Player Hand\n", Player_Hand)
+                print("Player's Hand Score:\n", player_score)
+                print("Dealer Hand\n",Dealer_Hand)
+                print("Dealer's Hand Score:\n", dealer_score)
+                
             if player_score > 21:
-                if ace == True:
-                    print("Ace has saved you from a bust!")
-                    player_score -=10
-                    ace = False
-                else:
-                    print("Past 21! You busted...")
-                    PlayerTurn = False
-                    match_going = False
-                    win_streak = 0
+                print("Past 21! You busted...")
+                PlayerTurn = False
+                match_going = False
+                win_streak = 0
 
         #Player has chosen to stand, the round is over for them, let the dealer play
         elif player_input == "stand":
