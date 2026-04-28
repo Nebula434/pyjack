@@ -5,9 +5,6 @@ No currency (yet)
 Me: 6 in a row!
 <img width="345" height="77" alt="image" src="https://github.com/user-attachments/assets/bc53acfb-7783-4c00-9d41-8535a36378f8" />
 
-# To-Do List
-Utilizing Godot Engine(?)
-Porting Logic over to Godot(?)
 # How to Install
 ***Download the latest release on the right***
 ***Drag the PyJack folder to a place you'll remember***
@@ -24,3 +21,7 @@ Porting Logic over to Godot(?)
 All is welcome to help 
 
 If submitting an issue, please include steps to reproduce!
+
+### As it stands im looking for assistance for the following below:
+
+Godot Engine understanding, PyGame modules, Music 
