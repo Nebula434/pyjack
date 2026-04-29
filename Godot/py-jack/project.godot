@@ -10,9 +10,9 @@ config_version=5
 
 [application]
 
-config/name="PyJack"
-run/main_scene="res://world_environment.tscn"
-config/features=PackedStringArray("4.6", "Mobile")
+config/name="Messy"
+run/main_scene="res://main_menu.tscn"
+config/features=PackedStringArray("4.6", "Forward Plus")
 config/icon="res://icon.svg"
 
 [physics]

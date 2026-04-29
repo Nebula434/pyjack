@@ -1,0 +1,53 @@
+[gd_scene format=3 uid="uid://dlyenoj4m3o12"]
+
+[ext_resource type="Texture2D" uid="uid://dh3brab2kae4o" path="res://title_screen.png" id="1_jix8l"]
+[ext_resource type="Texture2D" uid="uid://coyeu7cvsyq5v" path="res://start_button.png" id="2_glbon"]
+[ext_resource type="Texture2D" uid="uid://dkt3gmwfqpafv" path="res://settings_button.png" id="3_nlkkf"]
+[ext_resource type="Texture2D" uid="uid://dro58d2qf5fiv" path="res://quit_button.png" id="4_qe12f"]
+
+[node name="Game" type="Node2D" unique_id=912888170]
+
+[node name="Camera2D" type="Camera2D" parent="." unique_id=1651081611]
+scale = Vector2(2, 2)
+ignore_rotation = false
+zoom = Vector2(0.5, 0.5)
+
+[node name="main_menu" type="Node2D" parent="." unique_id=1469011485]
+
+[node name="TitleScreen" type="Control" parent="main_menu" unique_id=1274211518]
+layout_mode = 3
+anchors_preset = 0
+
+[node name="Sprite2D" type="Sprite2D" parent="main_menu/TitleScreen" unique_id=477803798]
+texture = ExtResource("1_jix8l")
+
+[node name="start_button" type="Button" parent="main_menu/TitleScreen" unique_id=478572930]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = -128.37172
+offset_top = -55.365105
+offset_right = 135.62828
+offset_bottom = 80.634895
+icon = ExtResource("2_glbon")
+
+[node name="settings_button" type="Button" parent="main_menu/TitleScreen" unique_id=81838265]
+layout_mode = 0
+offset_left = -130.35431
+offset_top = 108.190445
+offset_right = 133.64569
+offset_bottom = 244.19044
+icon = ExtResource("3_nlkkf")
+
+[node name="quit_button" type="Button" parent="main_menu/TitleScreen" unique_id=754872229]
+layout_mode = 0
+offset_left = -130.84996
+offset_top = 262.09518
+offset_right = 133.15004
+offset_bottom = 398.09518
+icon = ExtResource("4_qe12f")
+
+[node name="match" type="Node2D" parent="." unique_id=1494025032]
+
+[node name="player_hand" type="Node2D" parent="match" unique_id=1670883893]
+
+[node name="dealer_hand" type="Node2D" parent="match" unique_id=492052820]
