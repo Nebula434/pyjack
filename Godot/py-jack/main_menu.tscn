@@ -48,6 +48,10 @@ icon = ExtResource("4_qe12f")
 
 [node name="match" type="Node2D" parent="." unique_id=1494025032]
 
-[node name="player_hand" type="Node2D" parent="match" unique_id=1670883893]
+[node name="Player" type="Node2D" parent="match" unique_id=1152063324]
 
-[node name="dealer_hand" type="Node2D" parent="match" unique_id=492052820]
+[node name="player_hand" type="Node2D" parent="match/Player" unique_id=1670883893]
+
+[node name="Dealer" type="Node2D" parent="match" unique_id=718168395]
+
+[node name="dealer_hand" type="Node2D" parent="match/Dealer" unique_id=492052820]
