@@ -1,5 +1,6 @@
 import random
 import card as deck
+import csv 
 
 #Variables 
 Player_Hand = []
@@ -16,7 +17,7 @@ Player_Hand = []
 Dealer_Hand = []
 Card = []
 Prob = random.uniform(0,1)
-
+#chips = open("player_info.txt", "a")
 #start of game loop, let's set our values
 running = True
 match_going = True

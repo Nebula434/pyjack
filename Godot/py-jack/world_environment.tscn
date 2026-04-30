@@ -1,8 +1,0 @@
-[gd_scene format=3 uid="uid://dl38j8ghwpw7e"]
-
-[node name="WorldEnvironment" type="Node2D" unique_id=1963609428]
-
-[node name="Window" type="Window" parent="." unique_id=1947673089]
-oversampling_override = 1.0
-position = Vector2i(0, 36)
-size = Vector2i(1920, 1080)
