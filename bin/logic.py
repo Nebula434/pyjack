@@ -2,36 +2,38 @@ import random
 import card as deck
 import csv 
 
-#Variables 
-Player_Hand = []
-Dealer_Hand = []
-Card = []
-Prob = random.uniform(0,1)
+
 
 #Functions to be called throughout the game multiple times#
 # deck.draw_card((hand you are giving the card to), "Text you want to print out")
 # deck.ScoreCard((hand you are scoring aka Dealer_Hand or Player_Hand))
-#
-#Variables
+
+
+#Variables the loop needs
 Player_Hand = []
 Dealer_Hand = []
 Card = []
 Prob = random.uniform(0,1)
-#chips = open("player_info.txt", "a")
-#start of game loop, let's set our values
-running = True
-match_going = True
+#chips = open("player_info.txt", "a") #I want to grab the data from a saved text file later on
+chips = 0 #temorarily i will set this up as a from 0
+betted_chips = 0
+running = True # if this is false, game is stopped
+match_going = True # this is for when we need to pause to calculate items
 PlayerTurn = True
 total_hand_score = 0
 dealer_score = 0
 win_streak = 0
+lost = False
+
 def reset(): #NOTE: Purpose of this function is to reset values that need to be used in the next game loop
     Player_Hand.clear()
     Dealer_Hand.clear()
     total_hand_score = 0
     dealer_score = 0
     player_score = 0
-    return Player_Hand, Dealer_Hand, total_hand_score, dealer_score, player_score
+    lost = False
+    betted_chips = 0
+    return Player_Hand, Dealer_Hand, total_hand_score, dealer_score, player_score, lost, betted_chips
 def start_match():
     match_going = True
     deck.draw_card(Player_Hand,"Player")
@@ -39,12 +41,17 @@ def start_match():
     deck.draw_card(Dealer_Hand,"Dealer")
     print("Current Dealer Hand \n", Dealer_Hand)
     print("Current Player Hand\n", Player_Hand)
-    return match_going
+    return match_going, betted_chips
 def end_match():
     match_going = False
     return match_going
+
+
 print("Start")
+betted_chips = int(input("How many chips to bet?:\n"))
 start_match()
+
+
 # The hopefully working game loop :) - This is awesome thank u Dustin :D
 while running:
     player_score = deck.ScoreCard(Player_Hand)
@@ -54,8 +61,9 @@ while running:
     ace_player = deck.ace_check(Player_Hand)
     while match_going and PlayerTurn: 
         # Grab input inside the loop so it asks every time
+        #betted_chips = input("How many chips to bet?:\n")
         player_input = input("Stand or Hit:\n").lower()
-
+        
         #check if the player chose to hit
         if player_input == "hit":
             deck.draw_card(Player_Hand,"Player")
@@ -76,6 +84,7 @@ while running:
                 PlayerTurn = False
                 match_going = False
                 win_streak = 0
+                chips -= betted_chips
 
         #Player has chosen to stand, the round is over for them, let the dealer play
         #!!DEALER CODE!!!
@@ -99,16 +108,20 @@ while running:
                     print("Dealer wins!")
                     match_going = end_match()
                     win_streak = 0
+                    chips -= betted_chips
+                    lost = True
                 elif dealer_score > 21:
                     print("Dealer Score is now:",dealer_score)
                     print("Dealer bust you win!")
                     match_going = end_match()
                     win_streak += 1
+                    chips += betted_chips
             if dealer_score < player_score and player_score <= 21:
                 print("Dealer Score is now:",dealer_score)
                 print("You win!")
                 match_going = end_match()
                 win_streak += 1
+                chips += betted_chips
 
             if dealer_score == player_score:
                 print("Dealer Score is now:",dealer_score)
@@ -116,12 +129,18 @@ while running:
                 match_going = end_match() # Ends game loop
 
 
+    print("Current Chip Count:",chips,)
+    if lost:
+        print("Loss from Round:-",betted_chips)
+    else:
+        print("Gain from Round:+",betted_chips)
     print("Current User Win Streak:",win_streak)
     user_continue_match = input("Continue Playing? Y/N").upper()
     if user_continue_match == "Y":
         reset()
         match_going = True
         PlayerTurn = True
+        betted_chips = int(input("How many chips to bet?:\n"))
         start_match()
         if len(Player_Hand) > 0 and len(Dealer_Hand) > 0:
             player_score = deck.ScoreCard(Player_Hand)
