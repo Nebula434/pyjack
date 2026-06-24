@@ -9,15 +9,7 @@ Card_numbers = [1,2,3,4,5,6,7,8,9,10]
 #    while len(Player_Hand) != 0:
 #	    Player_Hand.pop()
 
-def deal(cards_wanted,hand):#TODO: MAKE DEALING WORK# I got you fam -Dustin
-    hand_dealt = hand
-    for cards_needed in range(cards_wanted): 
-        if str(hand_dealt[0]) == str(Logic.Dealer_Hand[0]):
-            print("Drawing For Dealer")
-            dealer_draw_card()
-        if hand_dealt == Logic.Player_Hand[:]:
-            draw_card()
-    return hand_dealt
+
 
 def draw_card(hand,user): #some type of variable to put card into dealer or player#
     FaceCard = False

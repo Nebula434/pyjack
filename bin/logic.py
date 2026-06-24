@@ -34,6 +34,8 @@ def reset(): #NOTE: Purpose of this function is to reset values that need to be 
     lost = False
     betted_chips = 0
     return Player_Hand, Dealer_Hand, total_hand_score, dealer_score, player_score, lost, betted_chips
+
+
 def start_match():
     match_going = True
     deck.draw_card(Player_Hand,"Player")
@@ -137,7 +139,7 @@ while running:
     print("Current User Win Streak:",win_streak)
     user_continue_match = input("Continue Playing? Y/N").upper()
     if user_continue_match == "Y":
-        reset()
+        reset_state = reset()
         match_going = True
         PlayerTurn = True
         betted_chips = int(input("How many chips to bet?:\n"))
